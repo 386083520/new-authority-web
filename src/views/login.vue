@@ -20,7 +20,7 @@
             style="width: 63%"
             placeholder="验证码"></el-input>
           <div class="login-code">
-            <img :src="codeUrl" class="login-code-img"/>
+            <img :src="codeUrl" class="login-code-img" @click="getCode"/>
           </div>
         </el-form-item>
         <el-checkbox
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+import { getCodeImg } from '../api/login'
+
 export default {
   name: 'login',
   data () {
@@ -51,7 +53,21 @@ export default {
         code: '',
         rememberMe: false
       },
-      codeUrl: ''
+      codeUrl: '',
+      captchaOnOff: true
+    }
+  },
+  created () {
+    this.getCode()
+  },
+  methods: {
+    getCode () {
+      getCodeImg().then(res => {
+        this.captchaOnOff = res.captchaOnOff === undefined ? true : res.captchaOnOff
+        if (this.captchaOnOff) {
+          this.codeUrl = 'data:image/gif;base64,' + res.img
+        }
+      })
     }
   }
 }
@@ -96,6 +112,6 @@ export default {
   }
 }
   .login-code-img {
-
+    height: 38px;
   }
 </style>
