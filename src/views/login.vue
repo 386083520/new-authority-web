@@ -87,9 +87,12 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.$store.dispatch('Login', this.loginForm).then((res) => {
-            console.log('gsdres2', res)
+            this.$router.push('/')
           }).catch((err) => {
             console.log('gsderr', err)
+            if (this.captchaOnOff) {
+              this.getCode()
+            }
           })
         }
       })
