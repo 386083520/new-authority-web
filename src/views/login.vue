@@ -1,20 +1,20 @@
 <template>
     <div class="login">
-      <el-form class="login-form" :model="loginForm">
+      <el-form class="login-form" :model="loginForm" :rules="loginRules" ref="loginForm">
         <h3 class="title">若依后台管理系统</h3>
-        <el-form-item>
+        <el-form-item prop="username">
           <el-input
             v-model="loginForm.username"
             type="text"
           placeholder="账号"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="password">
           <el-input
             v-model="loginForm.password"
             type="password"
             placeholder="密码"></el-input>
         </el-form-item>
-        <el-form-item>
+        <el-form-item prop="code">
           <el-input
             v-model="loginForm.code"
             style="width: 63%"
@@ -56,7 +56,18 @@ export default {
         rememberMe: false
       },
       codeUrl: '',
-      captchaOnOff: true
+      captchaOnOff: true,
+      loginRules: {
+        username: [
+          { required: true, trigger: 'blur', message: '请输入用户名' }
+        ],
+        password: [
+          { required: true, trigger: 'blur', message: '请输入密码' }
+        ],
+        code: [
+          { required: true, trigger: 'change', message: '请输入验证码' }
+        ]
+      }
     }
   },
   created () {
@@ -73,13 +84,16 @@ export default {
       })
     },
     handleLogin () {
-      console.log('gsdlogin')
-      const username = this.loginForm.username
-      const password = this.loginForm.password
-      const code = this.loginForm.code
-      const uuid = this.loginForm.uuid
-      login(username, password, code, uuid).then(res => {
-        console.log('gsdres', res)
+      this.$refs.loginForm.validate(valid => {
+        if (valid) {
+          const username = this.loginForm.username
+          const password = this.loginForm.password
+          const code = this.loginForm.code
+          const uuid = this.loginForm.uuid
+          login(username, password, code, uuid).then(res => {
+            console.log('gsdres', res)
+          })
+        }
       })
     }
   }
