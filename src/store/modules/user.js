@@ -1,9 +1,10 @@
-import { login } from '../../api/login'
+import { login, getInfo } from '../../api/login'
 import { setToken, getToken } from '../../utils/auth'
 
 const user = {
   state: {
-    token: getToken()
+    token: getToken(),
+    roles: []
   },
   mutations: {
     SET_TOKEN: (state, token) => {
@@ -21,6 +22,15 @@ const user = {
           console.log('gsdres', res)
           setToken(res.token)
           commit('SET_TOKEN', res.token)
+          resolve(res)
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    GetInfo ({ commit }) {
+      return new Promise((resolve, reject) => {
+        getInfo().then(res => {
           resolve(res)
         }).catch(error => {
           reject(error)

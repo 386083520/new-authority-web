@@ -7,6 +7,13 @@ export function getCodeImg () {
   })
 }
 
+export function getInfo () {
+  return request({
+    url: '/getInfo',
+    method: 'get'
+  })
+}
+
 export function login (username, password, code, uuid) {
   const data = {
     username,
