@@ -42,7 +42,7 @@
 </template>
 
 <script>
-import { getCodeImg, login } from '../api/login'
+import { getCodeImg } from '../api/login'
 
 export default {
   name: 'login',
@@ -86,12 +86,8 @@ export default {
     handleLogin () {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          const username = this.loginForm.username
-          const password = this.loginForm.password
-          const code = this.loginForm.code
-          const uuid = this.loginForm.uuid
-          login(username, password, code, uuid).then(res => {
-            console.log('gsdres', res)
+          this.$store.dispatch('Login', this.loginForm).then((res) => {
+            console.log('gsdres2', res)
           })
         }
       })
