@@ -67,11 +67,21 @@ export default {
         code: [
           { required: true, trigger: 'change', message: '请输入验证码' }
         ]
-      }
+      },
+      redirect: undefined
     }
   },
   created () {
     this.getCode()
+  },
+  watch: {
+    $route: {
+      handler: function (route) {
+        console.log('gsdroute', route)
+        this.redirect = route.query && route.query.redirect
+      },
+      immediate: true
+    }
   },
   methods: {
     getCode () {
@@ -87,7 +97,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.$store.dispatch('Login', this.loginForm).then((res) => {
-            this.$router.push('/')
+            this.$router.push({ path: this.redirect || '/' })
           }).catch((err) => {
             console.log('gsderr', err)
             if (this.captchaOnOff) {
