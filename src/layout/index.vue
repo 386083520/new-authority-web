@@ -4,7 +4,10 @@
 
 <script>
 export default {
-  name: 'Layout'
+  name: 'Layout',
+  mounted () {
+    console.log('gsdtoken', this.$store.state.user.token)
+  }
 }
 </script>
 
