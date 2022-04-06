@@ -20,6 +20,8 @@ const user = {
           console.log('gsdres', res)
           commit('SET_TOKEN', res.token)
           resolve(res)
+        }).catch(error => {
+          reject(error)
         })
       })
     }

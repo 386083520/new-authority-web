@@ -88,6 +88,8 @@ export default {
         if (valid) {
           this.$store.dispatch('Login', this.loginForm).then((res) => {
             console.log('gsdres2', res)
+          }).catch((err) => {
+            console.log('gsderr', err)
           })
         }
       })
