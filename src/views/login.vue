@@ -28,9 +28,10 @@
           v-model="loginForm.rememberMe">记住密码</el-checkbox>
         <el-form-item style="width: 100%">
           <el-button
+            @click.native="handleLogin"
           type="primary"
           style="width: 100%">
-            <span>登陆</span>
+            <span>登 录</span>
           </el-button>
         </el-form-item>
       </el-form>
@@ -41,7 +42,7 @@
 </template>
 
 <script>
-import { getCodeImg } from '../api/login'
+import { getCodeImg, login } from '../api/login'
 
 export default {
   name: 'login',
@@ -51,6 +52,7 @@ export default {
         username: '',
         password: '',
         code: '',
+        uuid: '',
         rememberMe: false
       },
       codeUrl: '',
@@ -66,7 +68,18 @@ export default {
         this.captchaOnOff = res.captchaOnOff === undefined ? true : res.captchaOnOff
         if (this.captchaOnOff) {
           this.codeUrl = 'data:image/gif;base64,' + res.img
+          this.loginForm.uuid = res.uuid
         }
+      })
+    },
+    handleLogin () {
+      console.log('gsdlogin')
+      const username = this.loginForm.username
+      const password = this.loginForm.password
+      const code = this.loginForm.code
+      const uuid = this.loginForm.uuid
+      login(username, password, code, uuid).then(res => {
+        console.log('gsdres', res)
       })
     }
   }
