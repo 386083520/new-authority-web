@@ -1,13 +1,24 @@
 <template>
-    <div>Layout</div>
+    <div>
+      <side-bar></side-bar>
+      <div>
+        <div>
+          <nav-bar></nav-bar>
+          <tags-view></tags-view>
+        </div>
+        <app-main></app-main>
+      </div>
+    </div>
 </template>
 
 <script>
+import SideBar from './components/SideBar/index'
+import NavBar from './components/NavBar'
+import TagsView from './components/TagsView/index'
+import AppMain from './components/AppMain'
 export default {
   name: 'Layout',
-  mounted () {
-    console.log('gsdtoken', this.$store.state.user.token)
-  }
+  components: { AppMain, TagsView, NavBar, SideBar },
 }
 </script>
 

@@ -8,7 +8,6 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
-  console.log('gsdconfig', config)
   const notToken = (config.headers || {}).notToken === true
   if (getToken() && !notToken) {
     config.headers.Authorization = 'Bearer ' + getToken()
@@ -16,7 +15,7 @@ service.interceptors.request.use(config => {
   return config
 }, error => {
   Message({
-    message: message,
+    message: error,
     type: 'error',
     duration: 5 * 1000
   })
@@ -24,7 +23,6 @@ service.interceptors.request.use(config => {
 })
 
 service.interceptors.response.use(res => {
-  console.log('gsdresaaa', res)
   const code = res.data.code
   const msg = res.data.msg
   if (code === 401) {

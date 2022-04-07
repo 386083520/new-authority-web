@@ -77,7 +77,6 @@ export default {
   watch: {
     $route: {
       handler: function (route) {
-        console.log('gsdroute', route)
         this.redirect = route.query && route.query.redirect
       },
       immediate: true
@@ -99,7 +98,6 @@ export default {
           this.$store.dispatch('Login', this.loginForm).then((res) => {
             this.$router.push({ path: this.redirect || '/' })
           }).catch((err) => {
-            console.log('gsderr', err)
             if (this.captchaOnOff) {
               this.getCode()
             }
