@@ -4,7 +4,7 @@ import { getToken } from './utils/auth'
 import { Message } from 'element-ui'
 const whiteList = ['/login']
 router.beforeEach((to, from, next) => {
-  console.log('gsdto', to)
+  console.log('gsdroles', store.getters.roles)
   if (getToken()) {
     if (to.path === '/login') {
       next({ path: '/' })
