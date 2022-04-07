@@ -18,7 +18,7 @@ import TagsView from './components/TagsView/index'
 import AppMain from './components/AppMain'
 export default {
   name: 'Layout',
-  components: { AppMain, TagsView, NavBar, SideBar },
+  components: { AppMain, TagsView, NavBar, SideBar }
 }
 </script>
 

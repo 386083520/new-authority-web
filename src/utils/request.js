@@ -1,6 +1,9 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
+import { Message, MessageBox } from 'element-ui'
 import { getToken } from './auth'
+import store from '../store'
+
+const isRelogin = { show: false }
 
 const service = axios.create({
   baseURL: process.env.VUE_APP_BASE_URL,
@@ -26,6 +29,21 @@ service.interceptors.response.use(res => {
   const code = res.data.code
   const msg = res.data.msg
   if (code === 401) {
+    if (!isRelogin.show) {
+      isRelogin.show = true
+      MessageBox.confirm('登录状态已过期，请重新登录', {
+        confirmButtonText: '重新登录',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        isRelogin.show = false
+        store.dispatch('Logout').then(() => {
+          location.href = '/'
+        })
+      }).catch(() => {
+        isRelogin.show = false
+      })
+    }
     return Promise.reject(new Error('无效的会话，或者会话已过期，请重新登录。'))
   } else if (code === 500) {
     Message({

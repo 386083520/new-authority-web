@@ -97,7 +97,7 @@ export default {
         if (valid) {
           this.$store.dispatch('Login', this.loginForm).then((res) => {
             this.$router.push({ path: this.redirect || '/' })
-          }).catch((err) => {
+          }).catch(() => {
             if (this.captchaOnOff) {
               this.getCode()
             }

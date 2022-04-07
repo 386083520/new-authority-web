@@ -33,3 +33,10 @@ export function login (username, password, code, uuid) {
     data: data
   })
 }
+
+export function logout () {
+  return request({
+    url: '/logout',
+    method: 'post'
+  })
+}
