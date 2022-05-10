@@ -1,12 +1,17 @@
 <template>
   <div>
-    SideBar
+    <logo/>
+    <el-scrollbar>
+      menu
+    </el-scrollbar>
   </div>
 </template>
 
 <script>
+import Logo from './Logo'
 export default {
-  name: 'SideBar'
+  name: 'SideBar',
+  components: { Logo }
 }
 </script>
 
