@@ -30,7 +30,7 @@ export default {
 .sidebar-container {
   width: 200px;
   height: 100%;
-  background: #42b983;
+  background: #666;
   position: fixed;
 }
 </style>
