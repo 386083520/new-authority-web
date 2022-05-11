@@ -7,7 +7,7 @@
         class="el-menu-vertical-demo"
         :background-color="variables.menuBackground"
         text-color="#fff"
-        unique-opened="true"
+        :unique-opened="false"
         active-text-color="#ffd04b">
         <el-submenu index="1">
           <template slot="title">
@@ -38,6 +38,14 @@
             <el-menu-item index="2-2">选项2</el-menu-item>
           </el-menu-item-group>
           <el-menu-item-group title="分组2">
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
+            <el-menu-item index="2-3">选项3</el-menu-item>
             <el-menu-item index="2-3">选项3</el-menu-item>
           </el-menu-item-group>
           <el-submenu index="2-4">
@@ -78,6 +86,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+.el-scrollbar {
+  height: calc(100% - 50px);
+}
 </style>
