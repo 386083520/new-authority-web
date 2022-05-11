@@ -23,6 +23,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+  @import "~@/assets/styles/variables.scss";
   .app-wrapper {
     width: 100%;
     height: 100%;
@@ -30,7 +31,7 @@ export default {
 .sidebar-container {
   width: 200px;
   height: 100%;
-  background: #666;
+  background: $base-menu-background;
   position: fixed;
 }
 </style>
