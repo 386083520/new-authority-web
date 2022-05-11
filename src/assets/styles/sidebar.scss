@@ -1,9 +1,15 @@
-.sidebar-container {
-  width: 200px;
-  height: 100%;
-  background: $base-menu-background;
-  position: fixed;
-  .el-menu {
-    border: none;
+#app {
+  .main-container {
+    margin-left: 200px;
+    min-height: 100%;
+  }
+  .sidebar-container {
+    width: 200px;
+    height: 100%;
+    background: $base-menu-background;
+    position: fixed;
+    .el-menu {
+      border: none;
+    }
   }
 }
