@@ -28,10 +28,4 @@ export default {
     width: 100%;
     height: 100%;
   }
-.sidebar-container {
-  width: 200px;
-  height: 100%;
-  background: $base-menu-background;
-  position: fixed;
-}
 </style>

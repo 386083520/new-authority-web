@@ -1,0 +1,9 @@
+.sidebar-container {
+  width: 200px;
+  height: 100%;
+  background: $base-menu-background;
+  position: fixed;
+  .el-menu {
+    border: none;
+  }
+}
