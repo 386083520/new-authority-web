@@ -12,6 +12,7 @@ router.beforeEach((to, from, next) => {
         store.dispatch('GetInfo').then(res => {
           store.dispatch('GenerateRoutes').then(accessRoutes => {
             console.log('gsd', accessRoutes)
+            router.addRoutes(accessRoutes)
             next()
           })
         }).catch(err => {
