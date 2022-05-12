@@ -4,10 +4,11 @@ import Layout from '../layout/index.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
+export const constantRoute = [
   {
     path: '/login',
     name: 'login',
+    hidden: true,
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
@@ -15,12 +16,22 @@ const routes = [
   },
   {
     path: '',
-    component: Layout
+    component: Layout,
+    hidden: true
+  },
+  {
+    path: '/index',
+    component: () => import('@/views/index'),
+    name: 'Index',
+    meta: {
+      title: '首页',
+      icon: 'dashboard'
+    }
   }
 ]
 
 const router = new VueRouter({
-  routes
+  routes: constantRoute
 })
 
 export default router

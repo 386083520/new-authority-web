@@ -1,4 +1,5 @@
 import { getRouters } from '@/api/menu'
+import { constantRoute } from '@/router'
 const permissions = {
   state: {
     sidebarRouters: []
@@ -12,7 +13,7 @@ const permissions = {
     GenerateRoutes ({ commit }) {
       return new Promise(resolve => {
         getRouters().then(res => {
-          commit('SET_SIDEBAR_ROUTES', res.data)
+          commit('SET_SIDEBAR_ROUTES', constantRoute.concat(res.data))
           resolve(res)
         })
       })
