@@ -5,6 +5,7 @@ import store from './store'
 import Element from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './permission'
+import './assets/icons'
 
 import '@/assets/styles/index.scss'
 
