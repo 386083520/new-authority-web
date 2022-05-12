@@ -13,6 +13,7 @@
           v-for="(route, index) in sidebarRouters"
           :item="route"
           :key="route.path + index"
+          :base-path="route.path"
         ></sidebar-item>
       </el-menu>
     </el-scrollbar>

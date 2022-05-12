@@ -1,13 +1,13 @@
 <template>
   <div v-if="!item.hidden">
     <template v-if="!item.children">
-      <app-link :to="item.path">
-        <el-menu-item :index="item.path">
+      <app-link :to="basePath">
+        <el-menu-item :index="basePath">
           <menu-item :icon = "item.meta.icon" :title="item.meta.title"></menu-item>
         </el-menu-item>
       </app-link>
     </template>
-    <el-submenu v-else :index="item.path">
+    <el-submenu v-else :index="basePath">
       <template slot="title">
         <menu-item :icon = "item.meta.icon" :title="item.meta.title"></menu-item>
       </template>
@@ -15,6 +15,7 @@
         v-for="child in item.children"
         :key="child.path"
         :item="child"
+        :base-path="resolvePath(child.path)"
       ></sidebar-item>
     </el-submenu>
   </div>
@@ -23,6 +24,7 @@
 <script>
 import MenuItem from './Item'
 import AppLink from './Link'
+import path from 'path'
 export default {
   name: 'SidebarItem',
   components: { AppLink, MenuItem },
@@ -30,6 +32,15 @@ export default {
     item: {
       type: Object,
       required: true
+    },
+    basePath: {
+      type: String,
+      default: ''
+    }
+  },
+  methods: {
+    resolvePath (routePath) {
+      return path.resolve(this.basePath, routePath)
     }
   }
 }
