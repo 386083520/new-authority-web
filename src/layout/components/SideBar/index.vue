@@ -51,7 +51,7 @@ export default {
         children: [{
           name: 'User',
           path: 'user',
-          hidden: false,
+          hidden: true,
           component: 'system/user/index',
           meta: {
             title: '用户管理',

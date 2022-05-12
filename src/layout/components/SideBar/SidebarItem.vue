@@ -1,5 +1,17 @@
 <template>
-  <el-menu-item index="1-4-1">{{item.name}}</el-menu-item>
+  <div v-if="!item.hidden">
+    <el-menu-item index="1-4-1" v-if="!item.children">{{item.name}}</el-menu-item>
+    <el-submenu v-else>
+      <template slot="title">
+        <span>{{item.name}}</span>
+      </template>
+      <sidebar-item
+        v-for="child in item.children"
+        :key="child.path"
+        :item="child"
+      ></sidebar-item>
+    </el-submenu>
+  </div>
 </template>
 
 <script>
