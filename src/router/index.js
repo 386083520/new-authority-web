@@ -17,16 +17,17 @@ export const constantRoute = [
   {
     path: '',
     component: Layout,
-    hidden: true
-  },
-  {
-    path: '/index',
-    component: () => import('@/views/index'),
-    name: 'Index',
-    meta: {
-      title: '首页',
-      icon: 'dashboard'
-    }
+    children: [
+      {
+        path: '/index',
+        component: () => import('@/views/index'),
+        name: 'Index',
+        meta: {
+          title: '首页',
+          icon: 'dashboard'
+        }
+      }
+    ]
   }
 ]
 
