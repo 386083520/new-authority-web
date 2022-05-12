@@ -1,9 +1,11 @@
 <template>
   <div v-if="!item.hidden">
-    <el-menu-item index="1-4-1" v-if="!item.children">{{item.name}}</el-menu-item>
-    <el-submenu v-else>
+    <el-menu-item :index="item.path" v-if="!item.children">
+      <menu-item :icon = "item.meta.icon" :title="item.meta.title"></menu-item>
+    </el-menu-item>
+    <el-submenu v-else :index="item.path">
       <template slot="title">
-        <span>{{item.name}}</span>
+        <menu-item :icon = "item.meta.icon" :title="item.meta.title"></menu-item>
       </template>
       <sidebar-item
         v-for="child in item.children"
@@ -15,8 +17,10 @@
 </template>
 
 <script>
+import MenuItem from './Item'
 export default {
   name: 'SidebarItem',
+  components: { MenuItem },
   props: {
     item: {
       type: Object,
