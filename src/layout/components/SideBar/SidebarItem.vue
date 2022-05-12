@@ -1,8 +1,12 @@
 <template>
   <div v-if="!item.hidden">
-    <el-menu-item :index="item.path" v-if="!item.children">
-      <menu-item :icon = "item.meta.icon" :title="item.meta.title"></menu-item>
-    </el-menu-item>
+    <template v-if="!item.children">
+      <app-link :to="item.path">
+        <el-menu-item :index="item.path">
+          <menu-item :icon = "item.meta.icon" :title="item.meta.title"></menu-item>
+        </el-menu-item>
+      </app-link>
+    </template>
     <el-submenu v-else :index="item.path">
       <template slot="title">
         <menu-item :icon = "item.meta.icon" :title="item.meta.title"></menu-item>
@@ -18,9 +22,10 @@
 
 <script>
 import MenuItem from './Item'
+import AppLink from './Link'
 export default {
   name: 'SidebarItem',
-  components: { MenuItem },
+  components: { AppLink, MenuItem },
   props: {
     item: {
       type: Object,
