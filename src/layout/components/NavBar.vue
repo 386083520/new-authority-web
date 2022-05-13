@@ -1,6 +1,6 @@
 <template>
     <div class="navbar">
-      <hamburger class="hamburger-container"></hamburger>
+      <hamburger class="hamburger-container" @toggleClick="toggleSideBar"></hamburger>
       <breadcrumb class="breadcrumb-container"></breadcrumb>
       <div class="right-menu">
         right-menu
@@ -13,7 +13,12 @@ import Hamburger from '../../components/Hamburger/index'
 import Breadcrumb from '../../components/Breadcrumb/index'
 export default {
   name: 'NavBar',
-  components: { Hamburger, Breadcrumb }
+  components: { Hamburger, Breadcrumb },
+  methods: {
+    toggleSideBar () {
+      console.log('gsdtoggleSideBar')
+    }
+  }
 }
 </script>
 
@@ -28,6 +33,7 @@ export default {
     line-height: 46px;
     float: left;
     padding: 0 15px;
+    cursor: pointer;
   }
   .breadcrumb-container {
     float: left;
