@@ -4,6 +4,7 @@
     <el-scrollbar>
       <el-menu
         default-active="2"
+        :collapse="isCollapse"
         class="el-menu-vertical-demo"
         :background-color="variables.menuBackground"
         text-color="#fff"
@@ -35,6 +36,11 @@ export default {
     }
   },
   methods: {
+  },
+  data () {
+    return {
+      isCollapse: true
+    }
   }
 }
 </script>

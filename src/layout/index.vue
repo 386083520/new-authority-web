@@ -1,5 +1,5 @@
 <template>
-    <div class="app-wrapper">
+    <div class="app-wrapper" :class="objClass">
       <side-bar class="sidebar-container"></side-bar>
       <div class="main-container">
         <div>
@@ -18,7 +18,14 @@ import TagsView from './components/TagsView/index'
 import AppMain from './components/AppMain'
 export default {
   name: 'Layout',
-  components: { AppMain, TagsView, NavBar, SideBar }
+  components: { AppMain, TagsView, NavBar, SideBar },
+  computed: {
+    objClass () {
+      return {
+        hideSidebar: true
+      }
+    }
+  }
 }
 </script>
 
