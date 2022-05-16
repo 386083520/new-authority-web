@@ -22,5 +22,20 @@
     .sidebar-container {
       width: 54px;
     }
+    .el-menu--collapse {
+      .el-submenu {
+        .el-submenu__title {
+          span {
+            visibility: hidden;
+            height: 0;
+            width: 0;
+            display: inline-block;
+          }
+          .el-submenu__icon-arrow {
+            visibility: hidden;
+          }
+        }
+      }
+    }
   }
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <logo/>
+    <logo :collapse="isCollapse"/>
     <el-scrollbar>
       <el-menu
         default-active="2"
