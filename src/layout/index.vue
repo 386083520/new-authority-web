@@ -16,13 +16,17 @@ import SideBar from './components/SideBar/index'
 import NavBar from './components/NavBar'
 import TagsView from './components/TagsView/index'
 import AppMain from './components/AppMain'
+import { mapState } from 'vuex'
 export default {
   name: 'Layout',
   components: { AppMain, TagsView, NavBar, SideBar },
   computed: {
+    ...mapState({
+      sidebar: state => state.app.sidebar
+    }),
     objClass () {
       return {
-        hideSidebar: true
+        hideSidebar: !this.sidebar.opened
       }
     }
   }

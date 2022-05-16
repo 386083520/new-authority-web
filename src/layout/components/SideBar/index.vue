@@ -30,17 +30,15 @@ export default {
   name: 'SideBar',
   components: { SidebarItem, Logo },
   computed: {
-    ...mapGetters(['sidebarRouters']),
+    ...mapGetters(['sidebarRouters', 'sidebar']),
     variables () {
       return variables
+    },
+    isCollapse () {
+      return !this.sidebar.opened
     }
   },
   methods: {
-  },
-  data () {
-    return {
-      isCollapse: true
-    }
   }
 }
 </script>
