@@ -1,6 +1,6 @@
 <template>
   <div v-if="!item.hidden">
-    <template v-if="hasOneShowChild(item.children, item)">
+    <template v-if="hasOneShowChild(item.children, item) && !item.alwaysShow">
       <app-link :to="resolvePath(onlyOneChild.path)">
         <el-menu-item :index="resolvePath(onlyOneChild.path)">
           <menu-item :icon = "onlyOneChild.meta.icon" :title="onlyOneChild.meta.title"></menu-item>
