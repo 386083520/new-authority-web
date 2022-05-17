@@ -14,6 +14,17 @@
         <el-tooltip content="布局大小" placement="bottom" effect="dark">
           <size-select class="right-menu-item"></size-select>
         </el-tooltip>
+        <el-dropdown class="avatar-container" trigger="click">
+          <div class="avatar-wrapper">
+            <img :src="avatar" class="user-avatar">
+            <i class="el-icon-caret-bottom"></i>
+          </div>
+          <el-dropdown-menu slot="dropdown">
+            <el-dropdown-item>个人中心</el-dropdown-item>
+            <el-dropdown-item>布局设置</el-dropdown-item>
+            <el-dropdown-item divided>退出登陆</el-dropdown-item>
+          </el-dropdown-menu>
+        </el-dropdown>
       </div>
     </div>
 </template>
@@ -37,7 +48,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'sidebar'
+      'sidebar',
+      'avatar'
     ])
   }
 }
@@ -72,6 +84,19 @@ export default {
       height: 100%;
       font-size: 18px;
       color: #5a5e66;
+      vertical-align: text-bottom;
+    }
+    .avatar-container {
+      margin-right: 30px;
+      .avatar-wrapper {
+        margin-top: 5px;
+        .user-avatar {
+          width: 40px;
+          height: 40px;
+          cursor: pointer;
+          border-radius: 10px;
+        }
+      }
     }
   }
 </style>
