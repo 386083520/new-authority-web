@@ -3,7 +3,7 @@
     <logo :collapse="isCollapse"/>
     <el-scrollbar>
       <el-menu
-        default-active="2"
+        :default-active="activeMenu"
         :collapse="isCollapse"
         class="el-menu-vertical-demo"
         :background-color="variables.menuBackground"
@@ -31,6 +31,11 @@ export default {
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters(['sidebarRouters', 'sidebar']),
+    activeMenu () {
+      const route = this.$route
+      const { path } = route
+      return path
+    },
     variables () {
       return variables
     },
