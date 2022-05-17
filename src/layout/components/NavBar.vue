@@ -44,7 +44,7 @@ export default {
   .breadcrumb-container {
     float: left;
     height: 100%;
-    line-height: 46px;
+    line-height: 50px;
     margin-left: 8px;
   }
   .right-menu {
