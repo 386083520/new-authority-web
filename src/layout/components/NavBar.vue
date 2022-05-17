@@ -3,7 +3,17 @@
       <hamburger class="hamburger-container" @toggleClick="toggleSideBar" :is-active="sidebar.opened"></hamburger>
       <breadcrumb class="breadcrumb-container"></breadcrumb>
       <div class="right-menu">
-        right-menu
+        <header-search class="right-menu-item"></header-search>
+        <el-tooltip content="源码地址" placement="bottom" effect="dark">
+          <ruo-yi-git class="right-menu-item"></ruo-yi-git>
+        </el-tooltip>
+        <el-tooltip content="文档地址" placement="bottom" effect="dark">
+          <ruo-yi-doc class="right-menu-item"></ruo-yi-doc>
+        </el-tooltip>
+        <screenfull class="right-menu-item"></screenfull>
+        <el-tooltip content="布局大小" placement="bottom" effect="dark">
+          <size-select class="right-menu-item"></size-select>
+        </el-tooltip>
       </div>
     </div>
 </template>
@@ -12,9 +22,14 @@
 import Hamburger from '../../components/Hamburger/index'
 import Breadcrumb from '../../components/Breadcrumb/index'
 import { mapGetters } from 'vuex'
+import HeaderSearch from '../../components/HeaderSearch/index'
+import RuoYiGit from '../../components/RuoYi/Git/index'
+import RuoYiDoc from '../../components/RuoYi/Doc/index'
+import Screenfull from '../../components/Screenfull/index'
+import SizeSelect from '../../components/SizeSelect/index'
 export default {
   name: 'NavBar',
-  components: { Hamburger, Breadcrumb },
+  components: { SizeSelect, Screenfull, RuoYiDoc, RuoYiGit, HeaderSearch, Hamburger, Breadcrumb },
   methods: {
     toggleSideBar () {
       this.$store.dispatch('app/toggleSideBar')
@@ -51,5 +66,12 @@ export default {
     float: right;
     height: 100%;
     line-height: 46px;
+    .right-menu-item {
+      display: inline-block;
+      padding: 0 8px;
+      height: 100%;
+      font-size: 18px;
+      color: #5a5e66;
+    }
   }
 </style>
