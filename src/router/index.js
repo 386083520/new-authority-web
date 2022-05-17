@@ -17,6 +17,7 @@ export const constantRoute = [
   {
     path: '',
     component: Layout,
+    redirect: 'index',
     children: [
       {
         path: '/index',
@@ -30,6 +31,11 @@ export const constantRoute = [
     ]
   }
 ]
+
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function (location) {
+  return routerPush.call(this, location).catch(err => err)
+}
 
 const router = new VueRouter({
   routes: constantRoute

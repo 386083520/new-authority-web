@@ -22,7 +22,7 @@
           <el-dropdown-menu slot="dropdown">
             <el-dropdown-item>个人中心</el-dropdown-item>
             <el-dropdown-item>布局设置</el-dropdown-item>
-            <el-dropdown-item divided>退出登陆</el-dropdown-item>
+            <el-dropdown-item divided @click.native="logout">退出登陆</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -44,6 +44,17 @@ export default {
   methods: {
     toggleSideBar () {
       this.$store.dispatch('app/toggleSideBar')
+    },
+    logout () {
+      this.$confirm('确实注销并退出登录？', '提示', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$store.dispatch('Logout').then(() => {
+          location.href = '/'
+        })
+      })
     }
   },
   computed: {
