@@ -25,8 +25,13 @@ const tagsView = {
     addVisitedView ({ commit }, view) {
       commit('ADD_VISITED_VIEW', view)
     },
-    delView ({ dispatch }, view) {
-      dispatch('delVisitedView', view)
+    delView ({ dispatch, state }, view) {
+      return new Promise(resolve => {
+        dispatch('delVisitedView', view)
+        resolve({
+          visitedViews: [...state.visitedViews]
+        })
+      })
     },
     delVisitedView ({ commit }, view) {
       commit('DEL_VISITED_VIEW', view)

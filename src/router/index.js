@@ -25,7 +25,8 @@ export const constantRoute = [
         name: 'Index',
         meta: {
           title: '首页',
-          icon: 'dashboard'
+          icon: 'dashboard',
+          affix: true
         }
       }
     ]

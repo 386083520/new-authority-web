@@ -10,7 +10,7 @@
           class="tags-view-item"
         >
           {{tag.title}}
-          <span class="el-icon-close" @click="closeSelectedTag(tag)"></span>
+          <span v-if="!isAffix(tag)" class="el-icon-close" @click.stop="closeSelectedTag(tag)"></span>
         </router-link>
       </scroll-pan>
     </div>
@@ -49,7 +49,20 @@ export default {
       }
     },
     closeSelectedTag (view) {
-      this.$store.dispatch('tagsView/delView', view)
+      this.$store.dispatch('tagsView/delView', view).then(({ visitedViews }) => {
+        if (this.isActive(view)) {
+          this.toLastView(visitedViews, view)
+        }
+      })
+    },
+    toLastView (visitedViews, view) {
+      const latestView = visitedViews.slice(-1)[0]
+      if (latestView) {
+        this.$router.push(latestView.fullPath)
+      }
+    },
+    isAffix (tag) {
+      return tag.meta && tag.meta.affix
     }
   }
 }
