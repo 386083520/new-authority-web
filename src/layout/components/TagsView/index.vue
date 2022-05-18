@@ -10,6 +10,7 @@
           class="tags-view-item"
         >
           {{tag.title}}
+          <span class="el-icon-close" @click="closeSelectedTag(tag)"></span>
         </router-link>
       </scroll-pan>
     </div>
@@ -46,6 +47,9 @@ export default {
       if (name) {
         this.$store.dispatch('tagsView/addView', this.$route)
       }
+    },
+    closeSelectedTag (view) {
+      this.$store.dispatch('tagsView/delView', view)
     }
   }
 }
@@ -89,6 +93,21 @@ export default {
           display: inline-block;
           border-radius: 50%;
           margin-right: 2px;
+        }
+      }
+      .el-icon-close {
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        text-align: center;
+        vertical-align: 2px;
+        &:before {
+          transform: scale(0.6);
+          vertical-align: -2px;
+        }
+        &:hover {
+          background-color: #b4bccc;
+          color: #fff;
         }
       }
     }
