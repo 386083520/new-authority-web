@@ -19,22 +19,29 @@ import ScrollPan from './ScrollPane/index'
 export default {
   name: 'TagsView',
   components: { ScrollPan },
+  mounted () {
+    this.addTags()
+  },
+  watch: {
+    $route () {
+      this.addTags()
+    }
+  },
+  computed: {
+    visitedViews () {
+      return this.$store.state.tagsView.visitedViews
+    }
+  },
   data () {
     return {
-      visitedViews: [
-        {
-          title: '首页',
-          path: 'test'
-        },
-        {
-          title: 'test1',
-          path: 'test1'
-        },
-        {
-          title: 'test2',
-          path: 'test2'
-        }
-      ]
+    }
+  },
+  methods: {
+    addTags () {
+      const { name } = this.$route
+      if (name) {
+        this.$store.dispatch('tagsView/addView', this.$route)
+      }
     }
   }
 }
