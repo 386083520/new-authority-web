@@ -37,10 +37,45 @@
           </el-date-picker>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="mini">搜索</el-button>
-          <el-button size="mini">重置</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
+          <el-button size="mini" icon="el-icon-refresh">重置</el-button>
         </el-form-item>
       </el-form>
+
+      <el-row :gutter="10">
+        <el-col :span="1.5">
+          <el-button
+            type="primary"
+            size="mini"
+            icon="el-icon-plus"
+            plain
+          >新增</el-button>
+        </el-col>
+        <el-col :span="1.5">
+          <el-button
+            type="success"
+            size="mini"
+            icon="el-icon-edit"
+            plain
+          >修改</el-button>
+        </el-col>
+        <el-col :span="1.5">
+          <el-button
+            type="danger"
+            size="mini"
+            icon="el-icon-delete"
+            plain
+          >删除</el-button>
+        </el-col>
+        <el-col :span="1.5">
+          <el-button
+            type="warning"
+            size="mini"
+            icon="el-icon-download"
+            plain
+          >导出</el-button>
+        </el-col>
+      </el-row>
     </div>
 </template>
 
