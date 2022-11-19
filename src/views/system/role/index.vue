@@ -78,6 +78,57 @@
 
         <right-toolbar></right-toolbar>
       </el-row>
+
+      <el-table :data="roleList">
+        <el-table-column type="selection" width="55" align="center"></el-table-column>
+        <el-table-column label="角色编号" prop="roleId" width="120"></el-table-column>
+        <el-table-column label="角色名称" prop="roleName" width="150"></el-table-column>
+        <el-table-column label="权限字符" prop="roleKey" width="150"></el-table-column>
+        <el-table-column label="显示顺序" prop="roleSort" width="100"></el-table-column>
+        <el-table-column label="状态" width="100" prop="status">
+          <template slot-scope="scope">
+            <el-switch
+              v-model="scope.row.status"
+              active-value="0"
+              inactive-value="1"
+            >
+            </el-switch>
+          </template>
+        </el-table-column>
+        <el-table-column label="创建时间" width="180" prop="createTime"></el-table-column>
+        <el-table-column label="操作" align="center">
+          <template slot-scope="scope">
+            <el-button
+              size="mini"
+              type="text"
+              icon="el-icon-edit"
+              @click="handleUpdate(scope.row)"
+            >
+              修改
+            </el-button>
+            <el-button
+              size="mini"
+              type="text"
+              icon="el-icon-delete"
+            >
+              删除
+            </el-button>
+            <el-dropdown
+              size="mini"
+              type="text"
+              icon="el-icon-edit"
+            >
+              <span class="el-dropdown-link">
+                <i class="el-icon-d-arrow-right"></i>更多
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <el-dropdown-item icon="el-icon-circle-check">数据权限</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-user">分配用户</el-dropdown-item>
+              </el-dropdown-menu>
+            </el-dropdown>
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
 </template>
 
@@ -91,8 +142,12 @@ export default {
         roleName: undefined,
         roleKey: undefined,
         status: undefined
-      }
+      },
+      roleList: [{ searchValue: null, createBy: null, createTime: '2022-10-19 20:56:47', updateBy: null, updateTime: null, remark: '超级管理员', params: {}, roleId: 1, roleName: '超级管理员', roleKey: 'admin', roleSort: '1', dataScope: '1', menuCheckStrictly: true, deptCheckStrictly: true, status: '0', delFlag: '0', flag: false, menuIds: null, deptIds: null, permissions: null, admin: true }, { searchValue: null, createBy: null, createTime: '2022-10-19 20:56:47', updateBy: null, updateTime: null, remark: '普通角色', params: {}, roleId: 2, roleName: '普通角色', roleKey: 'common', roleSort: '2', dataScope: '2', menuCheckStrictly: true, deptCheckStrictly: true, status: '0', delFlag: '0', flag: false, menuIds: null, deptIds: null, permissions: null, admin: false }]
     }
+  },
+  methods: {
+    handleUpdate () {}
   }
 }
 </script>

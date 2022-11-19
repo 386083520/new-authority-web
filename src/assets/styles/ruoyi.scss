@@ -1,3 +1,13 @@
 .top-right-btn {
   float: right;
 }
+
+.el-table .el-dropdown-link {
+  cursor: pointer;
+  color: #409EFF;
+  margin-left: 5px;
+}
+
+.el-table .el-dropdown {
+  font-size: 12px;
+}
