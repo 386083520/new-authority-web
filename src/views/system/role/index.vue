@@ -134,6 +134,8 @@
 </template>
 
 <script>
+import { listRole } from '@/api/system/role'
+
 export default {
   name: 'role',
   data () {
@@ -144,11 +146,20 @@ export default {
         roleKey: undefined,
         status: undefined
       },
-      roleList: [{ searchValue: null, createBy: null, createTime: '2022-10-19 20:56:47', updateBy: null, updateTime: null, remark: '超级管理员', params: {}, roleId: 1, roleName: '超级管理员', roleKey: 'admin', roleSort: '1', dataScope: '1', menuCheckStrictly: true, deptCheckStrictly: true, status: '0', delFlag: '0', flag: false, menuIds: null, deptIds: null, permissions: null, admin: true }, { searchValue: null, createBy: null, createTime: '2022-10-19 20:56:47', updateBy: null, updateTime: null, remark: '普通角色', params: {}, roleId: 2, roleName: '普通角色', roleKey: 'common', roleSort: '2', dataScope: '2', menuCheckStrictly: true, deptCheckStrictly: true, status: '0', delFlag: '0', flag: false, menuIds: null, deptIds: null, permissions: null, admin: false }]
+      roleList: []
     }
   },
+  created() {
+    this.getList()
+  },
   methods: {
-    handleUpdate () {}
+    handleUpdate () {},
+    getList () {
+      listRole().then(response => {
+        console.log('gsdresponse', response)
+        this.roleList = response.rows
+      })
+    }
   }
 }
 </script>
