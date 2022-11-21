@@ -131,10 +131,10 @@
       </el-table>
       <pagination
         :total="total"
-        :limit="2"
-        :pageSizes="[2,3,5]"
+        :pageSizes="[2,3,5,10]"
         :page.sync="queryParams.pageNum"
         :limit.sync="queryParams.pageSize"
+        @pagination="getList"
       ></pagination>
     </div>
 </template>
@@ -164,7 +164,8 @@ export default {
   methods: {
     handleUpdate () {},
     getList () {
-      listRole().then(response => {
+      console.log('gsdaaa', this.queryParams)
+      listRole(this.queryParams).then(response => {
         this.roleList = response.rows
         this.total = response.total
       })

@@ -7,6 +7,8 @@
         :total="total"
         :layout="layout"
         :page-sizes="pageSizes"
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
       >
       </el-pagination>
     </div>
@@ -57,8 +59,17 @@ export default {
         return this.limit
       },
       set (val) {
-        this.$emit('update.limit', val)
+        console.log('gsd888', val)
+        this.$emit('update:limit', val)
       }
+    }
+  },
+  methods: {
+    handleSizeChange (val) {
+      this.$emit('pagination')
+    },
+    handleCurrentChange (val) {
+      this.$emit('pagination')
     }
   }
 }
