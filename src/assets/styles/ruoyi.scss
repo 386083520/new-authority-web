@@ -11,3 +11,10 @@
 .el-table .el-dropdown {
   font-size: 12px;
 }
+.pagination-container {
+  position: relative;
+}
+.pagination-container .el-pagination {
+  position: absolute;
+  right: 0;
+}

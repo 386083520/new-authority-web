@@ -129,6 +129,7 @@
           </template>
         </el-table-column>
       </el-table>
+      <pagination></pagination>
     </div>
 </template>
 
