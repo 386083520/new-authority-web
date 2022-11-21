@@ -129,7 +129,13 @@
           </template>
         </el-table-column>
       </el-table>
-      <pagination></pagination>
+      <pagination
+        :total="total"
+        :limit="2"
+        :pageSizes="[2,3,5]"
+        :page.sync="queryParams.pageNum"
+        :limit.sync="queryParams.pageSize"
+      ></pagination>
     </div>
 </template>
 
@@ -142,22 +148,25 @@ export default {
     return {
       dateRange: [],
       queryParams: {
+        pageNum: 1,
+        pageSize: 10,
         roleName: undefined,
         roleKey: undefined,
         status: undefined
       },
-      roleList: []
+      roleList: [],
+      total: 0
     }
   },
-  created() {
+  created () {
     this.getList()
   },
   methods: {
     handleUpdate () {},
     getList () {
       listRole().then(response => {
-        console.log('gsdresponse', response)
         this.roleList = response.rows
+        this.total = response.total
       })
     }
   }
