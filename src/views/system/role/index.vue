@@ -31,6 +31,7 @@
             style="width: 240px"
             type="daterange"
             range-separator="-"
+            value-format="yyyy-MM-dd"
             start-placeholder="开始时间"
             end-placeholder="结束时间"
           >
