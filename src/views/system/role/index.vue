@@ -139,11 +139,11 @@
         @pagination="getList"
       ></pagination>
       <el-dialog :title="title" :visible.sync="open" width="500px">
-        <el-form label-width="100px" :model="form">
-          <el-form-item label="角色名称">
+        <el-form label-width="100px" :model="form" ref="form">
+          <el-form-item label="角色名称" prop="roleName">
             <el-input placeholder="请输入角色名称" v-model="form.roleName"/>
           </el-form-item>
-          <el-form-item>
+          <el-form-item prop="roleKey">
             <span slot="label">
               <el-tooltip content="控制器中定义的权限字符，如：@PreAuthorize(`@ss.hasRole('admin')`)" placement="top">
                 <i class="el-icon-question"></i>
@@ -152,7 +152,7 @@
             </span>
             <el-input placeholder="请输入权限字符" v-model="form.roleKey"/>
           </el-form-item>
-          <el-form-item label="角色顺序">
+          <el-form-item label="角色顺序" prop="roleSort">
             <el-input-number controls-position="right" :min="0" v-model="form.roleSort"/>
           </el-form-item>
           <el-form-item label="状态">
@@ -171,7 +171,7 @@
             >
             </el-tree>
           </el-form-item>
-          <el-form-item label="备注">
+          <el-form-item label="备注" prop="remark">
             <el-input type="textarea" placeholder="请输入内容" v-model="form.remark"/>
           </el-form-item>
         </el-form>
@@ -230,10 +230,14 @@ export default {
       this.title = '添加角色'
     },
     cancel () {
+      this.reset()
       this.open = false
     },
     submitForm () {
       console.log('gsdform', this.form)
+    },
+    reset () {
+      this.resetForm('form')
     }
   }
 }
