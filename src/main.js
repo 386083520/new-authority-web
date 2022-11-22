@@ -10,7 +10,7 @@ import './assets/icons'
 import RightToolbar from '@/components/RightToolbar'
 import Pagination from '@/components/Pagination'
 
-import { resetForm } from '@/utils/ruoyi'
+import { resetForm, addDateRange } from '@/utils/ruoyi'
 
 import '@/assets/styles/index.scss'
 import '@/assets/styles/ruoyi.scss'
@@ -20,6 +20,7 @@ Vue.config.productionTip = false
 Vue.use(Element)
 
 Vue.prototype.resetForm = resetForm
+Vue.prototype.addDateRange = addDateRange
 
 Vue.component('RightToolbar', RightToolbar)
 Vue.component('Pagination', Pagination)

@@ -164,8 +164,7 @@ export default {
   methods: {
     handleUpdate () {},
     getList () {
-      console.log('gsdaaa', this.queryParams)
-      listRole(this.queryParams).then(response => {
+      listRole(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
         this.roleList = response.rows
         this.total = response.total
       })
