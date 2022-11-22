@@ -138,10 +138,10 @@
         :limit.sync="queryParams.pageSize"
         @pagination="getList"
       ></pagination>
-      <el-dialog :title="title" :visible="open" width="500px">
-        <el-form label-width="100px">
+      <el-dialog :title="title" :visible.sync="open" width="500px">
+        <el-form label-width="100px" :model="form">
           <el-form-item label="角色名称">
-            <el-input placeholder="请输入角色名称"/>
+            <el-input placeholder="请输入角色名称" v-model="form.roleName"/>
           </el-form-item>
           <el-form-item>
             <span slot="label">
@@ -150,13 +150,13 @@
               </el-tooltip>
               权限字符
             </span>
-            <el-input placeholder="请输入权限字符"/>
+            <el-input placeholder="请输入权限字符" v-model="form.roleKey"/>
           </el-form-item>
           <el-form-item label="角色顺序">
-            <el-input-number controls-position="right" :min="0"/>
+            <el-input-number controls-position="right" :min="0" v-model="form.roleSort"/>
           </el-form-item>
           <el-form-item label="状态">
-            <el-radio-group>
+            <el-radio-group v-model="form.status">
               <el-radio>正常</el-radio>
               <el-radio>停用</el-radio>
             </el-radio-group>
@@ -172,12 +172,12 @@
             </el-tree>
           </el-form-item>
           <el-form-item label="备注">
-            <el-input type="textarea" placeholder="请输入内容"/>
+            <el-input type="textarea" placeholder="请输入内容" v-model="form.remark"/>
           </el-form-item>
         </el-form>
         <div slot="footer">
-          <el-button type="primary">确定</el-button>
-          <el-button>取消</el-button>
+          <el-button type="primary" @click="submitForm">确定</el-button>
+          <el-button @click="cancel">取消</el-button>
         </div>
       </el-dialog>
     </div>
@@ -201,7 +201,8 @@ export default {
       roleList: [],
       total: 0,
       title: '',
-      open: false
+      open: false,
+      form: {}
     }
   },
   created () {
@@ -227,6 +228,12 @@ export default {
     handleAdd () {
       this.open = true
       this.title = '添加角色'
+    },
+    cancel () {
+      this.open = false
+    },
+    submitForm () {
+      console.log('gsdform', this.form)
     }
   }
 }
