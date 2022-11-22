@@ -175,6 +175,7 @@ export default {
       this.getList()
     },
     resetQuery () {
+      this.dateRange = []
       this.resetForm('queryForm')
       this.handleQuery()
     }
