@@ -1,7 +1,7 @@
 <template>
     <div class="app-container">
-      <el-form :inline="true">
-        <el-form-item label="角色名称">
+      <el-form :inline="true" ref="queryForm" :model="queryParams">
+        <el-form-item label="角色名称" prop="roleName">
           <el-input
             v-model="queryParams.roleName"
             placeholder="请输入角色名称"
@@ -9,7 +9,7 @@
             style="width: 240px"
           />
         </el-form-item>
-        <el-form-item label="权限字符">
+        <el-form-item label="权限字符" prop="roleKey">
           <el-input
             v-model="queryParams.roleKey"
             placeholder="请输入权限字符"
@@ -17,7 +17,7 @@
             style="width: 240px"
           />
         </el-form-item>
-        <el-form-item label="状态">
+        <el-form-item label="状态" prop="status">
           <el-select
             v-model="queryParams.status"
             size="small"
@@ -37,8 +37,8 @@
           </el-date-picker>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" size="mini" icon="el-icon-search">搜索</el-button>
-          <el-button size="mini" icon="el-icon-refresh">重置</el-button>
+          <el-button type="primary" size="mini" icon="el-icon-search" @click="handleQuery">搜索</el-button>
+          <el-button size="mini" icon="el-icon-refresh" @click="resetQuery">重置</el-button>
         </el-form-item>
       </el-form>
 
@@ -131,7 +131,7 @@
       </el-table>
       <pagination
         :total="total"
-        :pageSizes="[2,3,5,10]"
+        :pageSizes="[1,2,3,5,10]"
         :page.sync="queryParams.pageNum"
         :limit.sync="queryParams.pageSize"
         @pagination="getList"
@@ -169,6 +169,14 @@ export default {
         this.roleList = response.rows
         this.total = response.total
       })
+    },
+    handleQuery () {
+      this.queryParams.pageNum = 1
+      this.getList()
+    },
+    resetQuery () {
+      this.resetForm('queryForm')
+      this.handleQuery()
     }
   }
 }
