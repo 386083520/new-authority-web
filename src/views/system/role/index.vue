@@ -139,7 +139,7 @@
         @pagination="getList"
       ></pagination>
       <el-dialog :title="title" :visible.sync="open" width="500px">
-        <el-form label-width="100px" :model="form" ref="form">
+        <el-form label-width="100px" :model="form" ref="form" :rules="rules">
           <el-form-item label="角色名称" prop="roleName">
             <el-input placeholder="请输入角色名称" v-model="form.roleName"/>
           </el-form-item>
@@ -202,7 +202,18 @@ export default {
       total: 0,
       title: '',
       open: false,
-      form: {}
+      form: {},
+      rules: {
+        roleName: [
+          {required: true, message: '角色名称不能为空', trigger: 'blur'}
+        ],
+        roleKey: [
+          {required: true, message: '权限字符不能为空', trigger: 'blur'}
+        ],
+        roleSort: [
+          {required: true, message: '角色排序不能为空', trigger: 'blur'}
+        ]
+      }
     }
   },
   created () {
@@ -234,7 +245,11 @@ export default {
       this.open = false
     },
     submitForm () {
-      console.log('gsdform', this.form)
+      this.$refs['form'].validate(valid => {
+        if(valid) {
+          console.log('gsdform', this.form)
+        }
+      })
     },
     reset () {
       this.resetForm('form')
