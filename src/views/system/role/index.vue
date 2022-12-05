@@ -278,7 +278,7 @@ export default {
     },
     handleCheckedTreeExpand (val, type) {
       if (type === 'menu') {
-        let treeList = this.menuOptions
+        const treeList = this.menuOptions
         for (let i = 0; i < treeList.length; i++) {
           this.$refs.menu.store.nodesMap[treeList[i].id].expanded = val
         }
@@ -286,7 +286,7 @@ export default {
     },
     handleCheckedTreeNodeAll (val, type) {
       if (type === 'menu') {
-        this.$refs.menu.setCheckedNodes(val ? this.menuOptions: [])
+        this.$refs.menu.setCheckedNodes(val ? this.menuOptions : [])
       }
     },
     handleCheckedTreeConnect (val, type) {

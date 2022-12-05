@@ -10,6 +10,8 @@ import './assets/icons'
 import RightToolbar from '@/components/RightToolbar'
 import Pagination from '@/components/Pagination'
 
+import DictData from '@/components/DictData'
+
 import { resetForm, addDateRange } from '@/utils/ruoyi'
 
 import '@/assets/styles/index.scss'
@@ -18,6 +20,8 @@ import '@/assets/styles/ruoyi.scss'
 Vue.config.productionTip = false
 
 Vue.use(Element)
+
+DictData.install()
 
 Vue.prototype.resetForm = resetForm
 Vue.prototype.addDateRange = addDateRange
