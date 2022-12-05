@@ -198,6 +198,7 @@ import { treeselect as menuTreeselect } from '@/api/system/menu'
 
 export default {
   name: 'role',
+  dicts: ['sys_normal_disable'],
   data () {
     return {
       dateRange: [],
