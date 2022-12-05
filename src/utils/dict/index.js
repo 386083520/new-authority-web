@@ -9,7 +9,9 @@ export default function (Vue, options) {
       }
     },
     created () {
-      this.dict.init(this.$options.dicts)
+      this.dict.init(this.$options.dicts).then(() => {
+
+      })
     }
   })
 }
