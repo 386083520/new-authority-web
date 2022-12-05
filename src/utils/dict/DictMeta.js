@@ -1,21 +1,16 @@
-import { getDicts } from '@/api/system/dict/data'
-
+import DictOptions from './DictOptions'
 export default class DictMeta {
   constructor (options) {
     this.type = options.type
     this.request = options.request
+    this.responseConverter = options.responseConverter
   }
 }
 
 DictMeta.parse = function (options) {
   let opts = null
-  const metas = {
-    request (dictMeta) {
-      return getDicts(dictMeta.type).then(res => res.data)
-    }
-  }
   if (typeof options === 'string') {
-    opts = metas
+    opts = DictOptions.metas['*']
     opts.type = options
   }
   return new DictMeta(opts)

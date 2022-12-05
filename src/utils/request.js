@@ -16,7 +16,6 @@ service.interceptors.request.use(config => {
   if (getToken() && !notToken) {
     config.headers.Authorization = 'Bearer ' + getToken()
   }
-  console.log('gsdconfig11', config)
   if (config.method === 'get' && config.params) {
     let url = config.url + '?' + transParams(config.params)
     url = url.slice(0, -1)

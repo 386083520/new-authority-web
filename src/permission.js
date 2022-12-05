@@ -11,7 +11,6 @@ router.beforeEach((to, from, next) => {
       if (store.getters.roles.length === 0) {
         store.dispatch('GetInfo').then(res => {
           store.dispatch('GenerateRoutes').then(accessRoutes => {
-            console.log('gsd', accessRoutes)
             router.addRoutes(accessRoutes)
             next({ ...to })
           })

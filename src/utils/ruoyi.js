@@ -5,7 +5,6 @@ export function resetForm (refName) {
 }
 
 export function addDateRange (params, dateRange) {
-  console.log('gsdparams', params)
   const search = params
   search.params = typeof (search.params) === 'object' && search.params !== null && !Array.isArray(search.params) ? search.params : {}
   dateRange = Array.isArray(dateRange) ? dateRange : []

@@ -59,7 +59,6 @@ export default {
         return this.limit
       },
       set (val) {
-        console.log('gsd888', val)
         this.$emit('update:limit', val)
       }
     }

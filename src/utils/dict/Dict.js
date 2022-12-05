@@ -1,25 +1,14 @@
 import DictMeta from './DictMeta'
+import Vue from 'vue'
 const DEFAULT_DICT_OPTIONS = {
   types: []
 }
 export default class Dict {
   constructor () {
-    this.type = {
-      sys_normal_disable: [
-        {
-          value: 0,
-          label: '禁用'
-        },
-        {
-          value: 1,
-          label: '正常'
-        }
-      ]
-    }
+    this.type = {}
   }
 
   init (options) {
-    console.log('gsdinit', options)
     if (options instanceof Array) {
       options = { types: options }
     } else {
@@ -29,6 +18,8 @@ export default class Dict {
     const ps = []
     this._dictMetas = opts.types.map(t => DictMeta.parse(t))
     this._dictMetas.forEach(dicMeta => {
+      const type = dicMeta.type
+      Vue.set(this.type, type, [])
       ps.push(loadDict(this, dicMeta))
     })
     return Promise.all(ps)
@@ -37,6 +28,8 @@ export default class Dict {
 
 function loadDict (dict, dicMeta) {
   return dicMeta.request(dicMeta).then(response => {
-    console.log('gsdresponse', response)
+    const type = dicMeta.type
+    const dicts = dicMeta.responseConverter(response, dicMeta)
+    dict.type[type].splice(0, Number.MAX_SAFE_INTEGER, ...dicts)
   })
 }

@@ -34,7 +34,6 @@ export default {
       this.levelList = matched
     },
     handleLink (item) {
-      console.log('gsdaaa')
       const { path } = item
       this.$router.push(path)
     },
