@@ -193,7 +193,7 @@
 </template>
 
 <script>
-import { listRole } from '@/api/system/role'
+import { listRole, addRole } from '@/api/system/role'
 import { treeselect as menuTreeselect } from '@/api/system/menu'
 
 export default {
@@ -270,6 +270,11 @@ export default {
         if (valid) {
           this.form.menuIds = this.getMenuAllCheckedKeys()
           console.log('gsdform', this.form)
+          addRole(this.form).then(response => {
+            console.log(response)
+            this.open = false
+            this.getList()
+          })
         }
       })
     },

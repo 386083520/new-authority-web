@@ -7,3 +7,11 @@ export function listRole (query) {
     params: query
   })
 }
+
+export function addRole (data) {
+  return request({
+    url: 'system/role',
+    method: 'post',
+    data: data
+  })
+}
