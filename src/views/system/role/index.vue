@@ -59,6 +59,7 @@
             size="mini"
             icon="el-icon-edit"
             plain
+            :disabled="single"
             @click="handleUpdate"
           >修改</el-button>
         </el-col>
@@ -82,7 +83,7 @@
         <right-toolbar></right-toolbar>
       </el-row>
 
-      <el-table :data="roleList">
+      <el-table :data="roleList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center"></el-table-column>
         <el-table-column label="角色编号" prop="roleId" width="120"></el-table-column>
         <el-table-column label="角色名称" prop="roleName" width="150"></el-table-column>
@@ -233,7 +234,9 @@ export default {
       },
       menuExpand: false,
       menuNodeAll: false,
-      menuCheckStrictly: false
+      menuCheckStrictly: false,
+      ids: [],
+      single: true
     }
   },
   created () {
@@ -242,7 +245,7 @@ export default {
   methods: {
     handleUpdate (row) {
       this.reset()
-      const roleId = row.roleId
+      const roleId = row.roleId || this.ids
       const roleMenu = this.getRoleMenuTreeselect(roleId)
       getRole(roleId).then(response => {
         this.form = response.data
@@ -346,6 +349,10 @@ export default {
       const halfCheckedKeys = this.$refs.menu.getHalfCheckedKeys()
       checkedKeys.unshift.apply(checkedKeys, halfCheckedKeys)
       return checkedKeys
+    },
+    handleSelectionChange (selection) {
+      this.ids = selection.map(item => item.roleId)
+      this.single = selection.length !== 1
     }
   }
 }
