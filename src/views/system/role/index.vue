@@ -194,8 +194,8 @@
 </template>
 
 <script>
-import { listRole, addRole, getRole } from '@/api/system/role'
-import { treeselect as menuTreeselect } from '@/api/system/menu'
+import { listRole, addRole, getRole, updateRole } from '@/api/system/role'
+import { treeselect as menuTreeselect, roleMenuTreeselect } from '@/api/system/menu'
 
 export default {
   name: 'role',
@@ -243,9 +243,22 @@ export default {
     handleUpdate (row) {
       this.reset()
       const roleId = row.roleId
+      const roleMenu = this.getRoleMenuTreeselect(roleId)
       getRole(roleId).then(response => {
         this.form = response.data
         this.open = true
+        roleMenu.then(res => {
+          const checkedKeys = res.checkedKeys
+          checkedKeys.forEach(v => {
+            this.$refs.menu.setChecked(v, true, false)
+          })
+        })
+      })
+    },
+    getRoleMenuTreeselect (roleId) {
+      return roleMenuTreeselect(roleId).then(response => {
+        this.menuOptions = response.menus
+        return response
       })
     },
     getList () {
@@ -276,13 +289,21 @@ export default {
     submitForm () {
       this.$refs.form.validate(valid => {
         if (valid) {
-          this.form.menuIds = this.getMenuAllCheckedKeys()
-          console.log('gsdform', this.form)
-          addRole(this.form).then(response => {
-            this.$modal.msgSuccess('新增成功')
-            this.open = false
-            this.getList()
-          })
+          if (this.form.roleId !== undefined) {
+            this.form.menuIds = this.getMenuAllCheckedKeys()
+            updateRole(this.form).then(response => {
+              this.$modal.msgSuccess('修改成功')
+              this.open = false
+              this.getList()
+            })
+          }else {
+            this.form.menuIds = this.getMenuAllCheckedKeys()
+            addRole(this.form).then(response => {
+              this.$modal.msgSuccess('新增成功')
+              this.open = false
+              this.getList()
+            })
+          }
         }
       })
     },

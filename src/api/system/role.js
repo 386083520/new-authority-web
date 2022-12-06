@@ -16,6 +16,14 @@ export function addRole (data) {
   })
 }
 
+export function updateRole (data) {
+  return request({
+    url: 'system/role',
+    method: 'put',
+    data: data
+  })
+}
+
 export function getRole (roleId) {
   return request({
     url: '/system/role/' + roleId,
