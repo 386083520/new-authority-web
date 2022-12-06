@@ -1,11 +1,10 @@
-import { getDicts } from '@/api/system/dict/data'
 import dictConverter from './DictConverter'
 import { mergeRecursive } from '@/utils/ruoyi'
 export const options = {
   metas: {
     '*': {
-      request (dictMeta) {
-        return getDicts(dictMeta.type).then(res => res.data)
+      request: (dictMeta) => {
+        return Promise.resolve([])
       },
       responseConverter,
       labelField: 'label',
