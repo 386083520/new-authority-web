@@ -8,7 +8,9 @@ export const options = {
       },
       responseConverter
     }
-  }
+  },
+  DEFAULT_LABEL_FIELDS: ['dictLabel', 'label', 'name', 'title'],
+  DEFAULT_VALUE_FIELDS: ['dictValue', 'value', 'id', 'uid', 'key']
 }
 
 function responseConverter (response, dictMeta) {
