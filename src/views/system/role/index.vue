@@ -268,6 +268,7 @@ export default {
     submitForm () {
       this.$refs.form.validate(valid => {
         if (valid) {
+          this.form.menuIds = this.getMenuAllCheckedKeys()
           console.log('gsdform', this.form)
         }
       })
@@ -277,6 +278,7 @@ export default {
       this.menuNodeAll = false
       this.menuCheckStrictly = true
       this.form = {
+        menuIds: [],
         roleSort: 0,
         status: '0'
       }
@@ -304,6 +306,12 @@ export default {
       if (type === 'menu') {
         this.menuCheckStrictly = val
       }
+    },
+    getMenuAllCheckedKeys () {
+      const checkedKeys = this.$refs.menu.getCheckedKeys()
+      const halfCheckedKeys = this.$refs.menu.getHalfCheckedKeys()
+      checkedKeys.unshift.apply(checkedKeys, halfCheckedKeys)
+      return checkedKeys
     }
   }
 }
