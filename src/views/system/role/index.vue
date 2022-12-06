@@ -271,7 +271,7 @@ export default {
           this.form.menuIds = this.getMenuAllCheckedKeys()
           console.log('gsdform', this.form)
           addRole(this.form).then(response => {
-            console.log(response)
+            this.$modal.msgSuccess('新增成功')
             this.open = false
             this.getList()
           })
