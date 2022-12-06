@@ -30,3 +30,10 @@ export function getRole (roleId) {
     method: 'get'
   })
 }
+
+export function delRole (roleId) {
+  return request({
+    url: '/system/role/' + roleId,
+    method: 'delete'
+  })
+}
