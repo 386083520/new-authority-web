@@ -273,6 +273,13 @@ export default {
       })
     },
     reset () {
+      this.menuExpand = false
+      this.menuNodeAll = false
+      this.menuCheckStrictly = true
+      this.form = {
+        roleSort: 0,
+        status: '0'
+      }
       this.resetForm('form')
     },
     getMenuTreeselect () {
