@@ -15,3 +15,10 @@ export function addRole (data) {
     data: data
   })
 }
+
+export function getRole (roleId) {
+  return request({
+    url: '/system/role/' + roleId,
+    method: 'get'
+  })
+}

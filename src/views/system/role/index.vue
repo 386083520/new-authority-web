@@ -59,6 +59,7 @@
             size="mini"
             icon="el-icon-edit"
             plain
+            @click="handleUpdate"
           >修改</el-button>
         </el-col>
         <el-col :span="1.5">
@@ -193,7 +194,7 @@
 </template>
 
 <script>
-import { listRole, addRole } from '@/api/system/role'
+import { listRole, addRole, getRole } from '@/api/system/role'
 import { treeselect as menuTreeselect } from '@/api/system/menu'
 
 export default {
@@ -239,7 +240,14 @@ export default {
     this.getList()
   },
   methods: {
-    handleUpdate () {},
+    handleUpdate (row) {
+      this.reset()
+      const roleId = row.roleId
+      getRole(roleId).then(response => {
+        this.form = response.data
+        this.open = true
+      })
+    },
     getList () {
       listRole(this.addDateRange(this.queryParams, this.dateRange)).then(response => {
         this.roleList = response.rows
