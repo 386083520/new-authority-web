@@ -4,6 +4,8 @@ export default class DictMeta {
     this.type = options.type
     this.request = options.request
     this.responseConverter = options.responseConverter
+    this.labelField = options.labelField
+    this.valueField = options.valueField
   }
 }
 

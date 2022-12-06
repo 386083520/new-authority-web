@@ -6,11 +6,13 @@ export const options = {
       request (dictMeta) {
         return getDicts(dictMeta.type).then(res => res.data)
       },
-      responseConverter
+      responseConverter,
+      labelField: 'dictLabel',
+      valueField: 'dictValue'
     }
   },
-  DEFAULT_LABEL_FIELDS: ['dictLabel', 'label', 'name', 'title'],
-  DEFAULT_VALUE_FIELDS: ['dictValue', 'value', 'id', 'uid', 'key']
+  DEFAULT_LABEL_FIELDS: ['label', 'name', 'title'],
+  DEFAULT_VALUE_FIELDS: ['value', 'id', 'uid', 'key']
 }
 
 function responseConverter (response, dictMeta) {
