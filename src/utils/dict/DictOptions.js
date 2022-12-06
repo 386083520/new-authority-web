@@ -1,5 +1,6 @@
 import { getDicts } from '@/api/system/dict/data'
 import dictConverter from './DictConverter'
+import { mergeRecursive } from '@/utils/ruoyi'
 export const options = {
   metas: {
     '*': {
@@ -7,8 +8,8 @@ export const options = {
         return getDicts(dictMeta.type).then(res => res.data)
       },
       responseConverter,
-      labelField: 'dictLabel',
-      valueField: 'dictValue'
+      labelField: 'label',
+      valueField: 'value'
     }
   },
   DEFAULT_LABEL_FIELDS: ['label', 'name', 'title'],
@@ -22,6 +23,10 @@ function responseConverter (response, dictMeta) {
     return []
   }
   return dicts.map(d => dictConverter(d, dictMeta))
+}
+
+export function mergeOptions (src) {
+  mergeRecursive(options, src)
 }
 
 export default options
