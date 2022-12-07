@@ -83,7 +83,7 @@
           >导出</el-button>
         </el-col>
 
-        <right-toolbar :show-search.sync="showSearch"></right-toolbar>
+        <right-toolbar :show-search.sync="showSearch" @queryTable="getList"></right-toolbar>
       </el-row>
 
       <el-table :data="roleList" @selection-change="handleSelectionChange">
