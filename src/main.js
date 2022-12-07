@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css'
 import './permission'
 import './assets/icons'
 import plugins from './plugins'
+import { download } from '@/utils/request'
 
 import RightToolbar from '@/components/RightToolbar'
 import Pagination from '@/components/Pagination'
@@ -28,6 +29,7 @@ DictData.install()
 
 Vue.prototype.resetForm = resetForm
 Vue.prototype.addDateRange = addDateRange
+Vue.prototype.download = download
 
 Vue.component('RightToolbar', RightToolbar)
 Vue.component('Pagination', Pagination)

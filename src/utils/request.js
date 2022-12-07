@@ -78,4 +78,8 @@ service.interceptors.response.use(res => {
   return Promise.reject(error)
 })
 
+export function download (url, params, filename) {
+  console.log('gsddownload', url)
+}
+
 export default service
