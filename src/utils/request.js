@@ -3,7 +3,7 @@ import { Message, MessageBox } from 'element-ui'
 import { getToken } from './auth'
 import store from '../store'
 import { transParams } from '@/utils/ruoyi'
-
+import { saveAs } from 'file-saver'
 const isRelogin = { show: false }
 
 const service = axios.create({
@@ -35,6 +35,10 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(res => {
   const code = res.data.code
   const msg = res.data.msg
+  console.log('gsdres', res)
+  if (res.request.responseType === 'blob') {
+    return res.data
+  }
   if (code === 401) {
     if (!isRelogin.show) {
       isRelogin.show = true
@@ -80,6 +84,14 @@ service.interceptors.response.use(res => {
 
 export function download (url, params, filename) {
   console.log('gsddownload', url)
+  return service.post(url, params, {
+    responseType: 'blob'
+  }).then(res => {
+    console.log('gsdres', res)
+    saveAs(res, filename)
+  }).catch(r => {
+    Message.error('下载文件出现错误，请联系管理员')
+  })
 }
 
 export default service
