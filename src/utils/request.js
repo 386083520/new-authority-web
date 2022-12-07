@@ -1,9 +1,11 @@
 import axios from 'axios'
-import { Message, MessageBox } from 'element-ui'
+import { Loading, Message, MessageBox } from 'element-ui'
 import { getToken } from './auth'
 import store from '../store'
 import { transParams } from '@/utils/ruoyi'
 import { saveAs } from 'file-saver'
+
+let downloadLoadingInstance
 const isRelogin = { show: false }
 
 const service = axios.create({
@@ -83,14 +85,23 @@ service.interceptors.response.use(res => {
 })
 
 export function download (url, params, filename) {
-  console.log('gsddownload', url)
+  downloadLoadingInstance = Loading.service({
+    text: '正在下载数据，请稍候',
+    spinner: 'el-icon-loading',
+    background: 'rgba(0,0,0,0.7)'
+  })
   return service.post(url, params, {
-    responseType: 'blob'
+    transformRequest: params => { return transParams(params) },
+    responseType: 'blob',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }
   }).then(res => {
-    console.log('gsdres', res)
     saveAs(res, filename)
+    downloadLoadingInstance.close()
   }).catch(r => {
     Message.error('下载文件出现错误，请联系管理员')
+    downloadLoadingInstance.close()
   })
 }
 
