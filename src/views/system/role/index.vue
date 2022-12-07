@@ -1,6 +1,6 @@
 <template>
     <div class="app-container">
-      <el-form :inline="true" ref="queryForm" :model="queryParams">
+      <el-form :inline="true" ref="queryForm" :model="queryParams" v-show="showSearch">
         <el-form-item label="角色名称" prop="roleName">
           <el-input
             v-model="queryParams.roleName"
@@ -83,7 +83,7 @@
           >导出</el-button>
         </el-col>
 
-        <right-toolbar></right-toolbar>
+        <right-toolbar :show-search.sync="showSearch"></right-toolbar>
       </el-row>
 
       <el-table :data="roleList" @selection-change="handleSelectionChange">
@@ -241,7 +241,8 @@ export default {
       menuCheckStrictly: false,
       ids: [],
       single: true,
-      multiple: true
+      multiple: true,
+      showSearch: true
     }
   },
   created () {
