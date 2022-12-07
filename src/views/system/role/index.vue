@@ -83,16 +83,16 @@
           >导出</el-button>
         </el-col>
 
-        <right-toolbar :show-search.sync="showSearch" @queryTable="getList"></right-toolbar>
+        <right-toolbar :show-search.sync="showSearch" @queryTable="getList" :columns="columns"></right-toolbar>
       </el-row>
 
       <el-table :data="roleList" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center"></el-table-column>
-        <el-table-column label="角色编号" prop="roleId" width="120"></el-table-column>
-        <el-table-column label="角色名称" prop="roleName" width="150"></el-table-column>
-        <el-table-column label="权限字符" prop="roleKey" width="150"></el-table-column>
-        <el-table-column label="显示顺序" prop="roleSort" width="100"></el-table-column>
-        <el-table-column label="状态" width="100" prop="status">
+        <el-table-column label="角色编号" prop="roleId" width="120" v-if="columns[0].visible"></el-table-column>
+        <el-table-column label="角色名称" prop="roleName" width="150" v-if="columns[1].visible"></el-table-column>
+        <el-table-column label="权限字符" prop="roleKey" width="150" v-if="columns[2].visible"></el-table-column>
+        <el-table-column label="显示顺序" prop="roleSort" width="100" v-if="columns[3].visible"></el-table-column>
+        <el-table-column label="状态" width="100" prop="status" v-if="columns[4].visible">
           <template slot-scope="scope">
             <el-switch
               v-model="scope.row.status"
@@ -102,7 +102,7 @@
             </el-switch>
           </template>
         </el-table-column>
-        <el-table-column label="创建时间" width="180" prop="createTime"></el-table-column>
+        <el-table-column label="创建时间" width="180" prop="createTime" v-if="columns[5].visible"></el-table-column>
         <el-table-column label="操作" align="center">
           <template slot-scope="scope">
             <el-button
@@ -242,7 +242,15 @@ export default {
       ids: [],
       single: true,
       multiple: true,
-      showSearch: true
+      showSearch: true,
+      columns: [
+        { key: 0, label: '角色编号', visible: false },
+        { key: 1, label: '角色名称', visible: true },
+        { key: 2, label: '权限字符', visible: true },
+        { key: 3, label: '显示顺序', visible: true },
+        { key: 4, label: '状态', visible: true },
+        { key: 5, label: '创建时间', visible: true }
+      ]
     }
   },
   created () {
