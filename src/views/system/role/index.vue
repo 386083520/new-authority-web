@@ -62,6 +62,7 @@
             plain
             :disabled="single"
             @click="handleUpdate"
+            v-hasPermi="['system:role:edit']"
           >修改</el-button>
         </el-col>
         <el-col :span="1.5">
@@ -72,6 +73,7 @@
             plain
             @click="handleDelete"
             :disabled="multiple"
+            v-hasPermi="['system:role:remove']"
           >删除</el-button>
         </el-col>
         <el-col :span="1.5">
@@ -81,6 +83,7 @@
             icon="el-icon-download"
             plain
             @click="handleExport"
+            v-hasPermi="['system:role:export']"
           >导出</el-button>
         </el-col>
 
@@ -111,6 +114,7 @@
               type="text"
               icon="el-icon-edit"
               @click="handleUpdate(scope.row)"
+              v-hasPermi="['system:role:edit']"
             >
               修改
             </el-button>
@@ -119,6 +123,7 @@
               type="text"
               icon="el-icon-delete"
               @click="handleDelete(scope.row)"
+              v-hasPermi="['system:role:remove']"
             >
               删除
             </el-button>
@@ -126,13 +131,14 @@
               size="mini"
               type="text"
               icon="el-icon-edit"
+              v-hasPermi="['system:role:edit']"
             >
               <span class="el-dropdown-link">
                 <i class="el-icon-d-arrow-right"></i>更多
               </span>
               <el-dropdown-menu slot="dropdown">
-                <el-dropdown-item icon="el-icon-circle-check">数据权限</el-dropdown-item>
-                <el-dropdown-item icon="el-icon-user">分配用户</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-circle-check" v-hasPermi="['system:role:edit']">数据权限</el-dropdown-item>
+                <el-dropdown-item icon="el-icon-user" v-hasPermi="['system:role:edit']">分配用户</el-dropdown-item>
               </el-dropdown-menu>
             </el-dropdown>
           </template>
