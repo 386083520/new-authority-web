@@ -7,7 +7,7 @@
         <el-tooltip content="刷新" placement="top">
           <el-button size="mini" circle icon="el-icon-refresh" @click="refresh()"></el-button>
         </el-tooltip>
-        <el-tooltip content="显隐列" placement="top">
+        <el-tooltip content="显隐列" placement="top" v-if="columns">
           <el-button size="mini" circle icon="el-icon-menu" @click="showColumn()"></el-button>
         </el-tooltip>
       </el-row>
