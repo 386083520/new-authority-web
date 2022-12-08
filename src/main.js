@@ -14,6 +14,8 @@ import Pagination from '@/components/Pagination'
 
 import DictData from '@/components/DictData'
 
+import directive from './directive'
+
 import { resetForm, addDateRange } from '@/utils/ruoyi'
 
 import '@/assets/styles/index.scss'
@@ -24,6 +26,7 @@ Vue.config.productionTip = false
 Vue.use(Element)
 
 Vue.use(plugins)
+Vue.use(directive)
 
 DictData.install()
 
